@@ -31,7 +31,8 @@ public interface edge_data {
 	 */
 	public void setInfo(String s);
 	/**
-	 * Temporal data (aka color: e,g, white, gray, black) 
+	 * Tempora
+	 * l data (aka color: e,g, white, gray, black) 
 	 * which can be used be algorithms 
 	 * @return
 	 */

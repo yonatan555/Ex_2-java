@@ -4,32 +4,32 @@ import utils.Point3D;
 
 public class EdgeData implements edge_data {
 	double weight;
-	NodeData src;
-	NodeData dest;
+	int src;
+	int dest;
 	String metadata;
 	int tag;
 	
-	public EdgeData(NodeData src,NodeData dest,double weight) {
-		this.src = new NodeData(src.ID,src.weight,src.point);
-		this.dest =  new NodeData(dest.ID,dest.weight,dest.point); ;
-		this.weight = weight ;
+	public EdgeData(int src,int dest,double weight) {
+		this.src = src;
+		this.dest = dest;
+		this.weight = weight;
 	}
-	public EdgeData(NodeData src,NodeData dest,double weight,String metadata,int tag) {
-		this.src = new NodeData(src.ID,src.weight,src.point);
-		this.dest =  new NodeData(dest.ID,dest.weight,dest.point); ;
-		this.weight = weight ;
+	public EdgeData(int src,int dest,double weight,String metadata,int tag) {
+		this.src = src;
+		this.dest = dest;
+		this.weight = weight;
 		this.metadata = metadata;
 		this.tag = tag;
 	}
 	
 	@Override
 	public int getSrc() {
-		return this.src.ID;
+		return this.src;
 	}
 
 	@Override
 	public int getDest() {
-		return this.dest.ID;
+		return this.dest;
 	}
 
 	@Override

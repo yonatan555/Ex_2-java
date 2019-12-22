@@ -1,51 +1,53 @@
 package dataStructure;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Hashtable;
 
 public class DGraph implements graph{
-	HashMap<HashMap<EdgeData, Integer>, Integer> map;
+	Hashtable<Integer,node_data> vertex;
+	Hashtable<node_data,Hashtable<Integer, edge_data>> edge;
+	public DGraph() {
+		this.edge = new Hashtable<node_data, Hashtable<Integer,edge_data>>();
+		this.vertex= new Hashtable<Integer, node_data>();
+	}
 
 	@Override
 	public node_data getNode(int key) {
-		// TODO Auto-generated method stub
-		return null;
+		return vertex.get(key);
 	}
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
-		// TODO Auto-generated method stub
-		return null;
+		return edge.get(src).get(dest);
 	}
 
 	@Override
 	public void addNode(node_data n) {
-		// TODO Auto-generated method stub
-		
+		vertex.put(n.getKey(), n);
+		edge.put(n, new Hashtable<Integer, edge_data>());
 	}
 
 	@Override
 	public void connect(int src, int dest, double w) {
-		// TODO Auto-generated method stub
+		EdgeData ED = new EdgeData(src,dest,w);
+		edge.get(getNode(src)).put(dest,ED);
 		
 	}
 
 	@Override
 	public Collection<node_data> getV() {
-		// TODO Auto-generated method stub
-		return null;
+		return vertex.values();
 	}
 
 	@Override
 	public Collection<edge_data> getE(int node_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return edge.get(node_id).values();
 	}
 
 	@Override
 	public node_data removeNode(int key) {
-		// TODO Auto-generated method stub
-		return null;
+		edge.get(key).remove(key);
+		return vertex.remove(key);
 	}
 
 	@Override
