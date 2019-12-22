@@ -3,59 +3,77 @@ package dataStructure;
 import utils.Point3D;
 
 public class NodeData implements node_data {
-
+	int ID;
+	double weight;
+	String metadata;
+	int tag;
+	Point3D point;
+	public NodeData() {
+		this.ID=0;
+		this.weight=0;
+		this.metadata=null;
+		this.tag=0;
+		this.point=point.ORIGIN;
+	}
+	public NodeData(int id,double weight,Point3D point) {
+		this.ID=id;
+		this.weight=weight;
+		this.point=new Point3D(point);
+	}
+	public NodeData(int id,double weight,String metadata,int tag,Point3D point) {
+		this.ID=id;
+		this.weight=weight;
+		this.point=new Point3D(point);
+		this.metadata=metadata;
+		this.tag=tag;
+	}
 	@Override
 	public int getKey() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ID;
 	}
 
 	@Override
 	public Point3D getLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		return point;
 	}
 
 	@Override
 	public void setLocation(Point3D p) {
-		// TODO Auto-generated method stub
-		
+		this.point=new Point3D(p);
+
 	}
 
 	@Override
 	public double getWeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.weight;
 	}
 
 	@Override
 	public void setWeight(double w) {
-		// TODO Auto-generated method stub
-		
+		this.weight=w;
+
 	}
 
 	@Override
 	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.metadata;
 	}
 
 	@Override
 	public void setInfo(String s) {
-		// TODO Auto-generated method stub
-		
+		this.metadata=s;
+
 	}
 
 	@Override
 	public int getTag() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.tag;
 	}
 
 	@Override
 	public void setTag(int t) {
-		// TODO Auto-generated method stub
-		
+		this.tag=t;
+
 	}
 
 }

@@ -1,8 +1,10 @@
 package dataStructure;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 public class DGraph implements graph{
+	HashMap<HashMap<EdgeData, Integer>, Integer> map;
 
 	@Override
 	public node_data getNode(int key) {

@@ -1,47 +1,60 @@
 package dataStructure;
 
+import utils.Point3D;
+
 public class EdgeData implements edge_data {
+	double weight;
+	NodeData src;
+	NodeData dest;
+	String metadata;
+	int tag;
+	
+	public EdgeData(NodeData src,NodeData dest,double weight) {
+		this.src = new NodeData(src.ID,src.weight,src.point);
+		this.dest =  new NodeData(dest.ID,dest.weight,dest.point); ;
+		this.weight = weight ;
+	}
+	public EdgeData(NodeData src,NodeData dest,double weight,String metadata,int tag) {
+		this.src = new NodeData(src.ID,src.weight,src.point);
+		this.dest =  new NodeData(dest.ID,dest.weight,dest.point); ;
+		this.weight = weight ;
+		this.metadata = metadata;
+		this.tag = tag;
+	}
 	
 	@Override
 	public int getSrc() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.src.ID;
 	}
 
 	@Override
 	public int getDest() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.dest.ID;
 	}
 
 	@Override
 	public double getWeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return weight;
 	}
 
 	@Override
 	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return metadata;
 	}
 
 	@Override
 	public void setInfo(String s) {
-		// TODO Auto-generated method stub
-		
+		this.metadata = s ;
 	}
 
 	@Override
 	public int getTag() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.tag;
 	}
 
 	@Override
 	public void setTag(int t) {
-		// TODO Auto-generated method stub
-		
+		this.tag = t;
 	}
 
 }
