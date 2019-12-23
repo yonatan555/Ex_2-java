@@ -3,25 +3,26 @@ package dataStructure;
 import utils.Point3D;
 
 public class EdgeData implements edge_data {
-	double weight;
 	int src;
 	int dest;
-	String metadata;
+	double weight;
 	int tag;
-	
-	public EdgeData(int src,int dest,double weight) {
+	String metadata;
+
+	public EdgeData(int src, int dest, double weight) {
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
 	}
-	public EdgeData(int src,int dest,double weight,String metadata,int tag) {
+
+	public EdgeData(int src, int dest, double weight, String metadata, int tag) {
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
 		this.metadata = metadata;
 		this.tag = tag;
 	}
-	
+
 	@Override
 	public int getSrc() {
 		return this.src;
@@ -44,7 +45,7 @@ public class EdgeData implements edge_data {
 
 	@Override
 	public void setInfo(String s) {
-		this.metadata = s ;
+		this.metadata = s;
 	}
 
 	@Override

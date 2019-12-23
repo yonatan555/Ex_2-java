@@ -2,76 +2,102 @@ package dataStructure;
 
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
 
-public class DGraph implements graph{
-	Hashtable<Integer,node_data> vertex;
-	Hashtable<node_data,Hashtable<Integer, edge_data>> edge;
+import javax.xml.soap.Node;
+
+public class DGraph implements graph {
+	private Hashtable<Integer, node_data> vertex;
+	private Hashtable<node_data, Hashtable<Integer, edge_data>> edge;
+	static int MC;
+	static int edgesNum = 0 ;
+
 	public DGraph() {
-		this.edge = new Hashtable<node_data, Hashtable<Integer,edge_data>>();
-		this.vertex= new Hashtable<Integer, node_data>();
+		this.edge = new Hashtable<node_data, Hashtable<Integer, edge_data>>();
+		this.vertex = new Hashtable<Integer, node_data>();
+		MC++;
 	}
 
 	@Override
 	public node_data getNode(int key) {
+		MC++;
 		return vertex.get(key);
 	}
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
+		MC++;
 		return edge.get(src).get(dest);
 	}
 
 	@Override
 	public void addNode(node_data n) {
+		MC++;
 		vertex.put(n.getKey(), n);
 		edge.put(n, new Hashtable<Integer, edge_data>());
 	}
 
 	@Override
 	public void connect(int src, int dest, double w) {
-		EdgeData ED = new EdgeData(src,dest,w);
-		edge.get(getNode(src)).put(dest,ED);
-		
+		MC++;
+		edgesNum++;
+		EdgeData ED = new EdgeData(src, dest, w);
+		node_data m = vertex.get(src);
+		edge.get(m).put(dest, ED);
 	}
 
 	@Override
 	public Collection<node_data> getV() {
+		MC++;
 		return vertex.values();
 	}
 
 	@Override
 	public Collection<edge_data> getE(int node_id) {
-		return edge.get(node_id).values();
+		MC++;
+		node_data m = vertex.get(node_id);
+		return edge.get(m).values();
 	}
 
 	@Override
 	public node_data removeNode(int key) {
-		edge.get(key).remove(key);
+		MC++;
+		Collection<node_data> v = getV();
+		Iterator<node_data> ite = v.iterator();
+		while (ite.hasNext()) {
+			node_data m = ite.next();
+			if (edge.get(m).containsKey(key)) {
+				edge.get(m).remove(key);
+				edgesNum--;
+			}
+		}
+		int counter = edge.get(getNode(key)).size();
+		edge.remove(getNode(key));
+		edgesNum -= counter ; 
 		return vertex.remove(key);
 	}
 
 	@Override
 	public edge_data removeEdge(int src, int dest) {
-		// TODO Auto-generated method stub
-		return null;
+		MC++;
+		edges--;
+		return edge.get(getNode(src)).remove(dest);
 	}
 
 	@Override
 	public int nodeSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		MC++;
+		return this.vertex.size();
 	}
 
 	@Override
 	public int edgeSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		MC++;
+		return edges;
 	}
 
 	@Override
 	public int getMC() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.MC;
 	}
-
 }

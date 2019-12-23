@@ -5,28 +5,32 @@ import utils.Point3D;
 public class NodeData implements node_data {
 	int ID;
 	double weight;
-	String metadata;
 	int tag;
+	String metadata;
 	Point3D point;
+
 	public NodeData() {
-		this.ID=0;
-		this.weight=0;
-		this.metadata=null;
-		this.tag=0;
-		this.point=point.ORIGIN;
+		this.ID = 0;
+		this.weight = 0;
+		this.metadata = null;
+		this.tag = 0;
+		this.point = point.ORIGIN;
 	}
-	public NodeData(int id,double weight,Point3D point) {
-		this.ID=id;
-		this.weight=weight;
-		this.point=new Point3D(point);
+
+	public NodeData(int id, double weight, Point3D point) {
+		this.ID = id;
+		this.weight = weight;
+		this.point = new Point3D(point);
 	}
-	public NodeData(int id,double weight,String metadata,int tag,Point3D point) {
-		this.ID=id;
-		this.weight=weight;
-		this.point=new Point3D(point);
-		this.metadata=metadata;
-		this.tag=tag;
+
+	public NodeData(int id, double weight, String metadata, int tag, Point3D point) {
+		this.ID = id;
+		this.weight = weight;
+		this.point = new Point3D(point);
+		this.metadata = metadata;
+		this.tag = tag;
 	}
+
 	@Override
 	public int getKey() {
 		return this.ID;
@@ -39,7 +43,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public void setLocation(Point3D p) {
-		this.point=new Point3D(p);
+		this.point = new Point3D(p);
 
 	}
 
@@ -50,7 +54,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public void setWeight(double w) {
-		this.weight=w;
+		this.weight = w;
 
 	}
 
@@ -61,7 +65,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public void setInfo(String s) {
-		this.metadata=s;
+		this.metadata = s;
 
 	}
 
@@ -72,8 +76,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public void setTag(int t) {
-		this.tag=t;
+		this.tag = t;
 
 	}
-
 }
