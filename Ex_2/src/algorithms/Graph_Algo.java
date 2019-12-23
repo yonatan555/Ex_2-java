@@ -1,33 +1,42 @@
 package algorithms;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.GrayFilter;
+import dataStructure.DGraph;
+import dataStructure.EdgeData;
+import dataStructure.NodeData;
+import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
+
 /**
- * This empty class represents the set of graph-theory algorithms
- * which should be implemented as part of Ex2 - Do edit this class.
- * @author 
+ * This empty class represents the set of graph-theory algorithms which should
+ * be implemented as part of Ex2 - Do edit this class.
+ * 
+ * @author
  *
  */
-public class Graph_Algo implements graph_algorithms{
+public class Graph_Algo implements graph_algorithms {
+	DGraph m;
 
 	@Override
 	public void init(graph g) {
-		// TODO Auto-generated method stub
-		
+		;
 	}
 
 	@Override
 	public void init(String file_name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void save(String file_name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -44,7 +53,6 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -56,8 +64,10 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public graph copy() {
-		// TODO Auto-generated method stub
-		return null;
+		graph gr = (graph) new Graph_Algo();
+		gr = this.m.copy();
+		return gr;
+
 	}
 
 }

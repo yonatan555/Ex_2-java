@@ -8,7 +8,13 @@ public class EdgeData implements edge_data {
 	double weight;
 	int tag;
 	String metadata;
-
+	public EdgeData() {
+		this.src=0;
+		this.dest=0;
+		this.weight=0;
+		this.tag = 0 ;
+		this.metadata = null;
+	}
 	public EdgeData(int src, int dest, double weight) {
 		this.src = src;
 		this.dest = dest;
@@ -56,6 +62,10 @@ public class EdgeData implements edge_data {
 	@Override
 	public void setTag(int t) {
 		this.tag = t;
+	}
+	public edge_data copy(EdgeData a ) {
+		EdgeData i = new EdgeData(a.src, a.dest, a.weight, new String(a.metadata), a.tag);
+		return i ; 
 	}
 
 }

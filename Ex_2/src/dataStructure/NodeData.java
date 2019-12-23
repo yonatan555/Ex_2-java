@@ -79,4 +79,16 @@ public class NodeData implements node_data {
 		this.tag = t;
 
 	}
+	public node_data copy(NodeData other) {
+		
+		NodeData n = new NodeData();
+		
+		n.ID = other.ID;
+		n.tag = other.tag;
+		n.weight = other.weight;
+		n.metadata = new String(other.metadata);
+		n.point = new Point3D(other.point);
+		
+		return n ; 
+	}
 }

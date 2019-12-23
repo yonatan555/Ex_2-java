@@ -7,10 +7,11 @@ import java.util.Iterator;
 import javax.xml.soap.Node;
 
 public class DGraph implements graph {
+
 	private Hashtable<Integer, node_data> vertex;
 	private Hashtable<node_data, Hashtable<Integer, edge_data>> edge;
 	static int MC;
-	static int edgesNum = 0 ;
+	static int edgesNum = 0;
 
 	public DGraph() {
 		this.edge = new Hashtable<node_data, Hashtable<Integer, edge_data>>();
@@ -73,14 +74,14 @@ public class DGraph implements graph {
 		}
 		int counter = edge.get(getNode(key)).size();
 		edge.remove(getNode(key));
-		edgesNum -= counter ; 
+		edgesNum -= counter;
 		return vertex.remove(key);
 	}
 
 	@Override
 	public edge_data removeEdge(int src, int dest) {
 		MC++;
-		edges--;
+		edgesNum--;
 		return edge.get(getNode(src)).remove(dest);
 	}
 
@@ -93,11 +94,33 @@ public class DGraph implements graph {
 	@Override
 	public int edgeSize() {
 		MC++;
-		return edges;
+		return edgesNum;
 	}
 
 	@Override
 	public int getMC() {
 		return this.MC;
+	}
+
+	public DGraph copy() {
+		DGraph G = new DGraph();
+		Collection<node_data> v = getV();
+		Iterator<node_data> ite = v.iterator();
+
+		while (ite.hasNext()) {
+			NodeData m = new NodeData();
+			m = (NodeData) ite.next();
+			G.addNode(m);
+			Collection<edge_data> e = getE(m.ID);
+			Iterator<edge_data> ite1 = e.iterator();
+			while (ite1.hasNext()) {
+				EdgeData ed = new EdgeData();
+				ed = (EdgeData) ite1.next();
+				node_data y = vertex.get(ed.src);
+				edge.get(y).put(ed.dest, ed);
+			}
+		}
+		return G;
+
 	}
 }
