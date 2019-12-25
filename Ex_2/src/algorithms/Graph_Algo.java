@@ -86,23 +86,27 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 		boolean flag1 = false;
 		Collection<node_data> node = this.m.getV();
 		Iterator<node_data> it = node.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			flag = false;
 			flag1 = false;
 			node_data m = it.next();
 			Iterator<node_data> it1 = node.iterator();
 			while (it1.hasNext()) {
 				node_data n = it1.next();
-				if(this.m.getE(n.getKey())==null) return false;
-				Collection<edge_data> edge= this.m.getE(n.getKey());
+				if (this.m.getE(n.getKey()) == null)
+					return false;
+				Collection<edge_data> edge = this.m.getE(n.getKey());
 				Iterator<edge_data> ited = edge.iterator();
-				while(ited.hasNext()) {
+				while (ited.hasNext()) {
 					edge_data ed = ited.next();
-					if(m.getKey()==ed.getDest()) flag = true;
-					if(m.getKey()==ed.getSrc()) flag1= true;
+					if (m.getKey() == ed.getDest())
+						flag = true;
+					if (m.getKey() == ed.getSrc())
+						flag1 = true;
 				}
 			}
-			if(flag==false || flag1==false) return false;
+			if (flag == false || flag1 == false)
+				return false;
 		}
 
 		return flag && flag1;
@@ -114,17 +118,16 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 		Collection<edge_data> edge = this.m.getE(src);
 		int count = edge.size();
 		Iterator<edge_data> ite = edge.iterator();
-		int i=0;
-		edge_data arr [] = new edge_data[count];
-		while(ite.hasNext()) {
+		int i = 0;
+		edge_data arr[] = new edge_data[count];
+		while (ite.hasNext()) {
 			edge_data ed = new EdgeData();
-			ed=ite.next();
-				arr[i]=ed;
-				i++;
+			ed = ite.next();
+			arr[i] = ed;
+			i++;
 		}
 		Collection<edge_data> ed = this.m.getE(arr[0].getDest());
-		
-		
+
 		return 0;
 	}
 
@@ -155,8 +158,9 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 			while (ite.hasNext()) {
 				EdgeData ed = new EdgeData();
 				ed = (EdgeData) ite.next();
-				m.edge.get(n).put(ed.getDest(),
-						new EdgeData(ed.getSrc(), ed.getDest(), ed.getWeight(), ed.getInfo(), ed.getTag()));
+			//	m.edge.get(n).put(ed.getDest(),
+				//		new EdgeData(ed.getSrc(), ed.getDest(), ed.getWeight(), ed.getInfo(), ed.getTag()));
+				m.connect(n.getKey(), ed.getDest(), ed.getWeight());
 			}
 		}
 
