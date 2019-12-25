@@ -3,29 +3,30 @@ package dataStructure;
 import utils.Point3D;
 
 public class NodeData implements node_data {
+	
 	int ID;
-	double weight;
+	double weight ;
 	int tag;
-	String metadata;
-	Point3D point;
+	public String metadata ;
+	public Point3D point;
 
 	public NodeData() {
 		this.ID = 0;
-		this.weight = 0;
-		this.metadata = null;
+		this.weight = Double.MAX_VALUE;
+		this.metadata = "no path";
 		this.tag = 0;
 		this.point = point.ORIGIN;
 	}
 
 	public NodeData(int id, double weight, Point3D point) {
 		this.ID = id;
-		this.weight = weight;
+		this.weight = Double.MAX_VALUE;
 		this.point = new Point3D(point);
 	}
 
 	public NodeData(int id, double weight, String metadata, int tag, Point3D point) {
 		this.ID = id;
-		this.weight = weight;
+		this.weight = Double.MAX_VALUE;
 		this.point = new Point3D(point);
 		this.metadata = metadata;
 		this.tag = tag;
@@ -79,15 +80,15 @@ public class NodeData implements node_data {
 		this.tag = t;
 
 	}
-	public node_data copy(NodeData other) {
+	public node_data copy() {
 		
 		NodeData n = new NodeData();
 		
-		n.ID = other.ID;
-		n.tag = other.tag;
-		n.weight = other.weight;
-		n.metadata = new String(other.metadata);
-		n.point = new Point3D(other.point);
+		n.ID = this.ID;
+		n.tag = this.tag;
+		n.weight = this.weight;
+		n.metadata = new String(this.metadata);
+		n.point = new Point3D(this.point);
 		
 		return n ; 
 	}

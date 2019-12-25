@@ -3,22 +3,26 @@ package dataStructure;
 import utils.Point3D;
 
 public class EdgeData implements edge_data {
-	int src;
-	int dest;
-	double weight;
-	int tag;
-	String metadata;
+	
+	private int src;
+	private int dest;
+	private double weight;
+	private int tag;
+	private	String metadata = "need to implemnt";
+	
 	public EdgeData() {
+		
 		this.src=0;
 		this.dest=0;
 		this.weight=0;
 		this.tag = 0 ;
-		this.metadata = null;
+		this.metadata = new String("need to implemnt");
 	}
 	public EdgeData(int src, int dest, double weight) {
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
+		this.metadata =  new String("need to implemnt");
 	}
 
 	public EdgeData(int src, int dest, double weight, String metadata, int tag) {
@@ -63,8 +67,8 @@ public class EdgeData implements edge_data {
 	public void setTag(int t) {
 		this.tag = t;
 	}
-	public edge_data copy(EdgeData a ) {
-		EdgeData i = new EdgeData(a.src, a.dest, a.weight, new String(a.metadata), a.tag);
+	public edge_data copy() {
+		EdgeData i = new EdgeData(this.src, this.dest, this.weight, new String(this.metadata), this.tag);
 		return i ; 
 	}
 
