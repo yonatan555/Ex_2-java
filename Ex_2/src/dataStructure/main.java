@@ -10,6 +10,7 @@ public class main {
 	public static void main(String[] args) {
 
 		graph_algorithms t = new Graph_Algo();
+		
 		DGraph h = new DGraph();
 		DGraph temp = new DGraph();
 		

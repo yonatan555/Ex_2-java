@@ -63,13 +63,6 @@ public class DGraph implements graph {
 		return edge.get(m).values();
 	}
 
-	public Hashtable<Integer, edge_data> getHash(node_data n) {
-		MC++;
-		return (Hashtable<Integer, edge_data>) edge.get(n.getKey()).values();
-	}
-
-
-
 	@Override
 	public node_data removeNode(int key) {
 		MC++;

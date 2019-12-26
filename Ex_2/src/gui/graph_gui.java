@@ -37,15 +37,18 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 		MenuBar menuBar = new MenuBar();
 
 		Menu menu = new Menu("Menu");
-		Menu graph = new Menu("Graph");
+		//Menu graph = new Menu("Graph");
 
 		menuBar.add(menu);
-		menuBar.add(graph);
+		//menuBar.add(graph);
 
 		this.setMenuBar(menuBar);
 
-		MenuItem item1 = new MenuItem("Save");
+		MenuItem item1 = new MenuItem("Paint Graph");
 		item1.addActionListener(this);
+		/*MenuItem item1 = new MenuItem("Save");
+		item1.addActionListener
+		(this);
 
 		MenuItem item2 = new MenuItem("Load");
 		item2.addActionListener(this);
@@ -62,31 +65,34 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 		MenuItem item6 = new MenuItem("Paint Graph");
 
 		item2.addActionListener(this);
-		graph.add(item6);
+		*/
 		menu.add(item1);
-		menu.add(item2);
+		/*menu.add(item2);
+		graph.add(item6);
 		graph.add(item3);
 		graph.add(item4);
 		graph.add(item5);
-
-		this.addMouseListener(this);
+		 */
+		//this.addMouseListener(this);
 	}
 
 	public void paint(Graphics g) {
 
+		
 		super.paint(g);
-
+		
+		
 		node_data dest = null;
 
 		if (this.grp != null) {
+			
 			for (node_data no : this.grp.getV()) {
 				g.setColor(Color.BLUE);
 
-				g.fillOval(no.getLocation().ix(), no.getLocation().iy(), 10, 10); // draw src point
+				g.fillOval(no.getLocation().ix(), no.getLocation().iy(), 10, 10); 							// draw src point
 
-				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); 			// draw the num of src
-																											// point
-
+				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); 			// draw the num of src point
+																											
 				for (edge_data ed : this.grp.getE(no.getKey())) {
 
 					dest = this.grp.getNode(ed.getDest());
@@ -98,15 +104,13 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 
 					g.setColor(Color.CYAN);
 
-					g.drawString("" + no.getKey(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, 	// draw weight
-																											// of edge
-																											// point
+					g.drawString("" + no.getKey(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, 	// draw weight of edge point													
 							((no.getLocation().iy() + dest.getLocation().iy()) / 2) + 1);
 
-					g.setColor(Color.YELLOW);
+					g.setColor(Color.YELLOW);																//draw enterance point  
 
-					g.fillOval(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(),
-							dest.getLocation().iy());
+					g.fillOval(dest.getLocation().ix(), dest.getLocation().iy(), 10,
+							10);
 				}
 			}
 		}
@@ -117,54 +121,38 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 
 		String op = e.getActionCommand();
 
-		if (op.equals("paint graph")) {
-			repaint();
-		}
-		if (op.equals("Save")) {
-			repaint();
-		}
-		if (op.equals("Is Connected")) {
-			repaint();
-		}
-		if (op.equals("Shortest")) {
-			repaint();
-		}
-		if (op.equals("Shortest Path")) {
-			repaint();
-		}
-		if (op.equals("load")) {
+		if (op.equals("Paint Graph")) {
 			repaint();
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("mouseClicked");
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
-		repaint();
-		System.out.println("mousePressed");
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("mouseReleased");
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println("mouseEntered");
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		System.out.println("mouseExited");
+		// TODO Auto-generated method stub
+		
 	}
 }
