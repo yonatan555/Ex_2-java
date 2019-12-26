@@ -30,13 +30,13 @@ import utils.Point3D;
  * @author
  *
  */
-public class Graph_Algo implements graph_algorithms, Serializable {
+public class Graph_Algo  implements graph_algorithms, Serializable {
 
-	public DGraph m;
+	public graph m;
 
 	@Override
 	public void init(graph g) {
-		this.m = (DGraph) g;
+		this.m =  g ;
 	}
 
 	@Override
@@ -127,8 +127,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 			i++;
 		}
 		Collection<edge_data> ed = this.m.getE(arr[0].getDest());
-
-		return 0;
+				return 0;
 	}
 
 	@Override
@@ -144,6 +143,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 
 	@Override
 	public graph copy() {
+		
 		DGraph m = new DGraph();
 
 		Collection<node_data> node = this.m.getV();
@@ -158,12 +158,9 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 			while (ite.hasNext()) {
 				EdgeData ed = new EdgeData();
 				ed = (EdgeData) ite.next();
-			//	m.edge.get(n).put(ed.getDest(),
-				//		new EdgeData(ed.getSrc(), ed.getDest(), ed.getWeight(), ed.getInfo(), ed.getTag()));
 				m.connect(n.getKey(), ed.getDest(), ed.getWeight());
 			}
 		}
-
 		return m;
 	}
 

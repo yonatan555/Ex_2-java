@@ -17,12 +17,15 @@ public class EdgeData implements edge_data {
 		this.weight=0;
 		this.tag = 0 ;
 		this.metadata = new String("need to implemnt");
+		
 	}
 	public EdgeData(int src, int dest, double weight) {
+		
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
 		this.metadata =  new String("need to implemnt");
+	
 	}
 
 	public EdgeData(int src, int dest, double weight, String metadata, int tag) {

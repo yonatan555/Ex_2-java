@@ -67,8 +67,8 @@ public class DGraph implements graph {
 		MC++;
 		return (Hashtable<Integer, edge_data>) edge.get(n.getKey()).values();
 	}
-	
-	
+
+
 
 	@Override
 	public node_data removeNode(int key) {
@@ -113,23 +113,24 @@ public class DGraph implements graph {
 	}
 
 	public DGraph copy() {
-		DGraph G = new DGraph();
-		Collection<node_data> v = getV();
-		Iterator<node_data> ite = v.iterator();
+		
+		DGraph m = new DGraph();
 
-		Collection<Hashtable<Integer, edge_data>> e = getHash();
-		Iterator<Hashtable<Integer, edge_data>> ite1 = e.iterator();
-
-		while (ite.hasNext()) {
-			NodeData m = new NodeData();
-			m = (NodeData) ite.next();
-			G.addNode(new NodeData(m.getKey(), m.getWeight(), m.metadata, m.getTag(),
-					new Point3D(m.point.x(), m.point.y(), m.point.z())));
-
-			Hashtable<Integer, edge_data> hash = new Hashtable<Integer, edge_data>();
-			hash = ite1.next();
-			edge.put(m, hash);
+		Collection<node_data> node = this.getV();
+		Iterator<node_data> it = node.iterator();
+		while (it.hasNext()) {
+			NodeData n = new NodeData();
+			n = (NodeData) it.next();
+			m.addNode(new NodeData(n.getKey(), n.getWeight(), n.metadata, n.getTag(),
+					new Point3D(n.point.x(), n.point.y(), n.point.z())));
+			Collection<edge_data> edge = this.getE(n.getKey());
+			Iterator<edge_data> ite = edge.iterator();
+			while (ite.hasNext()) {
+				EdgeData ed = new EdgeData();
+				ed = (EdgeData) ite.next();
+				m.connect(n.getKey(), ed.getDest(), ed.getWeight());
+			}
 		}
-		return G;
+		return m;
 	}
 }
