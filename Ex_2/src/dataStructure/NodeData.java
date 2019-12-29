@@ -18,13 +18,13 @@ public class NodeData implements node_data {
 		this.point = point.ORIGIN;
 	}
 
-	public NodeData(int id, double weight, Point3D point) {
+	public NodeData(int id, Point3D point) {
 		this.ID = id;
 		this.weight = Double.MAX_VALUE;
 		this.point = new Point3D(point);
 	}
 
-	public NodeData(int id, double weight, String metadata, int tag, Point3D point) {
+	public NodeData(int id, String metadata, int tag, Point3D point) {
 		this.ID = id;
 		this.weight = Double.MAX_VALUE;
 		this.point = new Point3D(point);

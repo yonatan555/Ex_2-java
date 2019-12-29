@@ -28,11 +28,11 @@ public class main {
 		Point3D m4 = new Point3D(5, 6, 7);
 		// Point3D m5 = new Point3D (6,6,7);
 
-		NodeData a = new NodeData(1, 2.2, m);
-		NodeData b = new NodeData(2, 2.5, m1);
-		NodeData c = new NodeData(3, 2.5, m2);
-		NodeData d = new NodeData(4, 2.5, m3);
-		NodeData e = new NodeData(5, 2.5, m4);
+		NodeData a = new NodeData(1, m);
+		NodeData b = new NodeData(2, m1);
+		NodeData c = new NodeData(3, m2);
+		NodeData d = new NodeData(4, m3);
+		NodeData e = new NodeData(5, m4);
 		// NodeData f = new NodeData(6,2.5,m5);
 		
 		
@@ -47,7 +47,7 @@ public class main {
 		temp.connect(b.getKey(), c.getKey(), 2);
 		temp.connect(c.getKey(), d.getKey(), 3);
 		temp.connect(d.getKey(), e.getKey(), 2);
-		temp.connect(b.getKey(), d.getKey(),1);
+		temp.connect(b.getKey(), d.getKey(), 1);
 		temp.connect(c.getKey(), e.getKey(), 2);
 		/*
 		 * temp.connect(c.getKey(), a.getKey(), 4); temp.connect(c.getKey(), b.getKey(),

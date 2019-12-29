@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-
-
 import utils.Point3D;
 
 public class DGraph implements graph {
@@ -36,6 +34,7 @@ public class DGraph implements graph {
 
 	@Override
 	public void addNode(node_data n) {
+		if(vertex.contains(n.getKey())) throw new RuntimeException("this node allready exist");
 		MC++;
 		vertex.put(n.getKey(), n);
 		edge.put(n, new Hashtable<Integer, edge_data>());
@@ -114,7 +113,7 @@ public class DGraph implements graph {
 		while (it.hasNext()) {
 			NodeData n = new NodeData();
 			n = (NodeData) it.next();
-			m.addNode(new NodeData(n.getKey(), n.getWeight(), n.metadata, n.getTag(),
+			m.addNode(new NodeData(n.getKey(), n.metadata, n.getTag(),
 					new Point3D(n.point.x(), n.point.y(), n.point.z())));
 			Collection<edge_data> edge = this.getE(n.getKey());
 			Iterator<edge_data> ite = edge.iterator();
