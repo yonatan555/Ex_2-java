@@ -6,7 +6,7 @@ public class EdgeData implements edge_data {
 	
 	private int src;
 	private int dest;
-	private double weight=Double.MAX_VALUE;;
+	private double weight ;
 	private int tag;
 	private	String metadata = "need to implemnt";
 	
@@ -14,7 +14,7 @@ public class EdgeData implements edge_data {
 		
 		this.src=0;
 		this.dest=0;
-		this.weight=Double.MAX_VALUE;
+		this.weight=0;
 		this.tag = 0 ;
 		this.metadata = new String("need to implemnt");
 		
@@ -23,7 +23,7 @@ public class EdgeData implements edge_data {
 		
 		this.src = src;
 		this.dest = dest;
-		this.weight = Double.MAX_VALUE;;
+		this.weight = weight;
 		this.metadata =  new String("need to implemnt");
 	
 	}
@@ -31,7 +31,7 @@ public class EdgeData implements edge_data {
 	public EdgeData(int src, int dest, double weight, String metadata, int tag) {
 		this.src = src;
 		this.dest = dest;
-		this.weight = Double.MAX_VALUE;;
+		this.weight = weight;
 		this.metadata = metadata;
 		this.tag = tag;
 	}

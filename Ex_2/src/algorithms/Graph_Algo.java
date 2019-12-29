@@ -30,13 +30,13 @@ import utils.Point3D;
  * @author
  *
  */
-public class Graph_Algo  implements graph_algorithms, Serializable {
+public class Graph_Algo implements graph_algorithms, Serializable {
 
 	public graph m;
 
 	@Override
 	public void init(graph g) {
-		this.m =  g ;
+		this.m = g;
 	}
 
 	@Override
@@ -115,24 +115,50 @@ public class Graph_Algo  implements graph_algorithms, Serializable {
 	@Override
 	public double shortestPathDist(int src, int dest) {
 		this.m.getNode(src).setWeight(0);
+		Collection<node_data> n = this.m.getV();
+		Iterator<node_data> ite = n.iterator();
+		while(ite.hasNext()) {
+			Collection<node_data> node = this.m.getV();
+			Iterator<node_data> it = node.iterator();
+			while (it.hasNext()) {
+				shortestPathDist1(it.next().getKey());
+			}
+			this.m.getNode(src).setWeight(0);
+			ite.next();
+		}
+		return this.m.getNode(dest).getWeight();
+	}
+
+	private void shortestPathDist1(int src) {
 		Collection<edge_data> edge = this.m.getE(src);
 		int count = edge.size();
 		Iterator<edge_data> ite = edge.iterator();
 		int i = 0;
 		edge_data arr[] = new edge_data[count];
 		while (ite.hasNext()) {
-			edge_data ed = new EdgeData();
-			ed = ite.next();
-			arr[i] = ed;
+			arr[i] = ite.next();
 			i++;
 		}
-		Collection<edge_data> ed = this.m.getE(arr[0].getDest());
-				return 0;
+		for (int j = 0; j < arr.length; j++) {
+			if(this.m.getNode(arr[j].getDest()).getWeight()>(arr[j].getWeight()+this.m.getNode(arr[j].getSrc()).getWeight())) 
+				this.m.getNode(arr[j].getDest()).setWeight((arr[j].getWeight()+this.m.getNode(arr[j].getSrc()).getWeight()));
+		}
 	}
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
-		return null;
+		
+		ArrayList<node_data> node = new ArrayList<node_data>();
+		double y = shortestPathDist(src, dest);
+		Collection <edge_data> edge = this.m.getE(src);
+		
+		List<node_data> list = null;
+		
+		
+		
+		
+		
+		return list;
 	}
 
 	@Override
@@ -143,7 +169,7 @@ public class Graph_Algo  implements graph_algorithms, Serializable {
 
 	@Override
 	public graph copy() {
-		
+
 		DGraph m = new DGraph();
 
 		Collection<node_data> node = this.m.getV();

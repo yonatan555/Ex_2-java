@@ -44,29 +44,24 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 
 		this.setMenuBar(menuBar);
 
-		MenuItem item1 = new MenuItem("Paint Graph");
+		MenuItem item1 = new MenuItem("Paint_Graph");
 		item1.addActionListener(this);
+		menu.add(item1);
+		
 		/*MenuItem item1 = new MenuItem("Save");
 		item1.addActionListener
 		(this);
-
 		MenuItem item2 = new MenuItem("Load");
 		item2.addActionListener(this);
-
 		MenuItem item3 = new MenuItem("Is Connected");
 		item1.addActionListener(this);
-
 		MenuItem item4 = new MenuItem("Shortest Path");
 		item2.addActionListener(this);
-
 		MenuItem item5 = new MenuItem("Shortest");
 		item1.addActionListener(this);
-
 		MenuItem item6 = new MenuItem("Paint Graph");
-
 		item2.addActionListener(this);
 		*/
-		menu.add(item1);
 		/*menu.add(item2);
 		graph.add(item6);
 		graph.add(item3);
@@ -85,30 +80,21 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 		node_data dest = null;
 
 		if (this.grp != null) {
-			
 			for (node_data no : this.grp.getV()) {
+				
 				g.setColor(Color.BLUE);
-
 				g.fillOval(no.getLocation().ix(), no.getLocation().iy(), 10, 10); 							// draw src point
-
 				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); 			// draw the num of src point
-																											
 				for (edge_data ed : this.grp.getE(no.getKey())) {
-
+					
 					dest = this.grp.getNode(ed.getDest());
-
 					g.setColor(Color.RED);
-
 					g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), 		// draw edge point
 							dest.getLocation().iy());
-
 					g.setColor(Color.CYAN);
-
 					g.drawString("" + no.getKey(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, 	// draw weight of edge point													
 							((no.getLocation().iy() + dest.getLocation().iy()) / 2) + 1);
-
 					g.setColor(Color.YELLOW);																//draw enterance point  
-
 					g.fillOval(dest.getLocation().ix(), dest.getLocation().iy(), 10,
 							10);
 				}
@@ -121,7 +107,7 @@ public class graph_gui extends JFrame implements ActionListener, MouseListener {
 
 		String op = e.getActionCommand();
 
-		if (op.equals("Paint Graph")) {
+		if (op.equals("Paint_Graph")) {
 			repaint();
 		}
 	}
