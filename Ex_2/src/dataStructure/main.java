@@ -1,6 +1,10 @@
 package dataStructure;
 
 import gui.graph_gui;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 import gui.graph_gui;
@@ -21,7 +25,7 @@ public class main {
 		Point3D m1 = new Point3D(2, 4, 5);
 		Point3D m2 = new Point3D(3, 5, 6);
 		Point3D m3 = new Point3D(4, 6, 7);
-		Point3D m4 = new Point3D(2, 6, 7);
+		Point3D m4 = new Point3D(5, 6, 7);
 		// Point3D m5 = new Point3D (6,6,7);
 
 		NodeData a = new NodeData(1, 2.2, m);
@@ -39,44 +43,39 @@ public class main {
 		temp.addNode(d);
 		temp.addNode(e);
 		
-		temp.connect(a.getKey(), b.getKey(), 2);
+		temp.connect(a.getKey(), b.getKey(), 1);
 		temp.connect(b.getKey(), c.getKey(), 2);
-		temp.connect(c.getKey(), d.getKey(), 2);
+		temp.connect(c.getKey(), d.getKey(), 3);
 		temp.connect(d.getKey(), e.getKey(), 2);
+		temp.connect(b.getKey(), d.getKey(),1);
+		temp.connect(c.getKey(), e.getKey(), 2);
+		/*
+		 * temp.connect(c.getKey(), a.getKey(), 4); temp.connect(c.getKey(), b.getKey(),
+		 * 8); temp.connect(c.getKey(), d.getKey(), 3); temp.connect(d.getKey(),
+		 * a.getKey(), 1); temp.connect(d.getKey(), b.getKey(), 10);
+		 * temp.connect(d.getKey(), c.getKey(), 2);
+		 */
+
+		
 		
 		h = temp.copy();
 		
 		t.init(h);
+		System.out.println(t.shortestPathDist(1, 5));
+		
 		graph_gui grap = new  graph_gui (h);
+		List<Integer> targets = new ArrayList<Integer>();
+		targets.add(1);
+		targets.add(3);
+		targets.add(4);
+		
+		List<node_data> lis = t.shortestPath(1, 5);
+		for (int i = 0; i < lis.size(); i++) {
+			System.out.print(lis.get(i).getKey()+",");
+		}
 		
 
-////		t.  = new DGraph();
-////		Graph_Algo i = new Graph_Algo();
-////		i.m = new DGraph();
-//		
-//		t.m.addNode(a);
-//		t.m.addNode(b);
-//		t.m.addNode(c);
-//		t.m.addNode(d);
-//		t.m.addNode(e);
-//		// h.addNode(f);
-//
-//		t.m.connect(a.ID, b.ID, 0);
-//		t.m.connect(b.ID, c.ID, 0);
-//		t.m.connect(c.ID, d.ID, 0);
-//		// h.connect(b.ID, d.ID, 0);
-//		t.m.connect(c.ID, a.ID, 0);
-//		t.m.connect(d.ID, b.ID, 0);
-//
-//		// h.connect(d.ID, e.ID, 0);
-//
-//		i.m = (DGraph) t.copy();
-//		System.out.println(t.isConnected());
-//		
-//		Graph_Algo ron = new Graph_Algo();
-//		
-//		ron.init(t.copy());
-		
+
 		
 	
 	

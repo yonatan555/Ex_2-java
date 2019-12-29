@@ -1,3 +1,4 @@
+package gui;
 /**
  * This class represents a 3D point in space, with several methods
  * for 2D including Point-Line test.
