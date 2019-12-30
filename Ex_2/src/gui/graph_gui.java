@@ -30,7 +30,7 @@ import dataStructure.node_data;
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 
-public class graph_gui extends JFrame implements ActionListener , Serializable {
+public class graph_gui extends JFrame implements ActionListener, Serializable {
 
 	private static JFrame frame;
 	graph grp;
@@ -95,35 +95,41 @@ public class graph_gui extends JFrame implements ActionListener , Serializable {
 				g.setColor(Color.BLUE);
 				g.fillOval(no.getLocation().ix(), no.getLocation().iy(), 20, 20); // draw src point
 				g.setFont(new Font("TimesRoman", Font.PLAIN, 25)); // set the font of the oval
-				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); // draw the num of src point
-
+				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); // draw the num of src
+																									// point
 
 				for (edge_data ed : this.grp.getE(no.getKey())) {
 					dest = this.grp.getNode(ed.getDest());
-					if(grp.getNode(ed.getDest()).getTag() == 200 && grp.getNode(ed.getSrc()).getTag() == 200 ) {
+					if (grp.getNode(ed.getDest()).getTag() == 200 && grp.getNode(ed.getSrc()).getTag() == 200) {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
 						g.setColor(Color.black);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
+																											// point
 								dest.getLocation().iy());
-					}
-					else if (grp.getNode(ed.getDest()).getTag() == 300 && grp.getNode(ed.getSrc()).getTag() == 300 ) {
+					} else if (grp.getNode(ed.getDest()).getTag() == 300 && grp.getNode(ed.getSrc()).getTag() == 300) {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
 						g.setColor(Color.black);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
+																											// point
 								dest.getLocation().iy());
-					}
-					else {
+					} else {
 						g.setColor(Color.RED);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
+																											// point
 								dest.getLocation().iy());
 					}
 					g.setColor(Color.black);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 18)); // set the font of the string
-					g.drawString("" + ed.getWeight(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, // draw weight of edge point  
+					g.drawString("" + ed.getWeight(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, // draw
+																												// weight
+																												// of
+																												// edge
+																												// point
 							((no.getLocation().iy() + dest.getLocation().iy()) / 2) + 1);
 					g.setColor(Color.YELLOW);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); // set the font of the oval
-					g.fillOval(dest.getLocation().ix() - 5, dest.getLocation().iy() - 3, 10, 10); // draw enterance point
+					g.fillOval(dest.getLocation().ix() - 5, dest.getLocation().iy() - 3, 10, 10); // draw enterance
+																									// point
 				}
 			}
 		}
@@ -169,32 +175,34 @@ public class graph_gui extends JFrame implements ActionListener , Serializable {
 		chooser.setVisible(true);
 		String filename = chooser.getFile();
 		if (filename != null) {
-			temp.save(chooser.getDirectory()+filename+".txt");
+			temp.save(chooser.getDirectory() + filename + ".txt");
 		}
 
-	}	
-	public void Load() { 												// init from fiile
-		
-		Graph_Algo temp = new Graph_Algo();
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		JDialog.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("Test");
-		
-		frame.setLayout(new FlowLayout());
-		JFileChooser fileChooser = new JFileChooser();
-		int returnValue = fileChooser.showOpenDialog(null);
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			File selectedFile = fileChooser.getSelectedFile();
-
-			temp.init(selectedFile.getPath());
-			grp = temp.copy();
-			repaint();
-		}
-		frame.pack();
 	}
 
-	
-	
+	public void Load() { // init from fiile
+		try {
+			Graph_Algo temp = new Graph_Algo();
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JDialog.setDefaultLookAndFeelDecorated(true);
+			JFrame frame = new JFrame("Test");
+
+			frame.setLayout(new FlowLayout());
+			JFileChooser fileChooser = new JFileChooser();
+			int returnValue = fileChooser.showOpenDialog(null);
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = fileChooser.getSelectedFile();
+
+				temp.init(selectedFile.getPath());
+				grp = temp.copy();
+				repaint();
+			}
+			frame.pack();
+		} catch (Exception e) {
+			System.out.println("the file dosnt exist / couldnt read the file");
+		}
+	}
+
 	private void Shortest_Path_Dist() {
 		Graph_Algo m = new Graph_Algo();
 		m.init(this.grp);
@@ -210,7 +218,7 @@ public class graph_gui extends JFrame implements ActionListener , Serializable {
 			JOptionPane.showMessageDialog(Shortest, "the char is not aviablle");
 		}
 	}
-	 
+
 	private void Shortest_Path() {
 		Graph_Algo m = new Graph_Algo();
 		m.init(this.grp);
@@ -224,7 +232,7 @@ public class graph_gui extends JFrame implements ActionListener , Serializable {
 			List<node_data> lis = m.shortestPath(ans, ans1);
 			for (int i = 0; i < lis.size(); i++) {
 				lis.get(i).setTag(200);
-				
+
 			}
 			repaint();
 		} catch (Exception e) {
@@ -240,7 +248,7 @@ public class graph_gui extends JFrame implements ActionListener , Serializable {
 		String x = JOptionPane.showInputDialog(Shortest, "Enter points");
 		try {
 			List<Integer> targets = new ArrayList<Integer>();
-			String str [] = x.split(" ");
+			String str[] = x.split(" ");
 			for (int i = 0; i < str.length; i++) {
 				targets.add(Integer.parseInt(str[i]));
 			}
