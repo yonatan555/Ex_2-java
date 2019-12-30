@@ -12,7 +12,7 @@ public class DGraph implements graph {
 	public Hashtable<node_data, Hashtable<Integer, edge_data>> edge;
 
 	static int MC = 0;
-	static int edgesNum = 0;
+	int edgesNum = 0;
 
 	public DGraph() {
 		this.edge = new Hashtable<node_data, Hashtable<Integer, edge_data>>();
@@ -42,11 +42,24 @@ public class DGraph implements graph {
 
 	@Override
 	public void connect(int src, int dest, double w) {
-		MC++;
+		if(src == dest)  throw new RuntimeException("This is the same node");					// if it is the same node 
+		if(this.getNode(src) != null && this.getNode(dest) != null) {
+			
+		Collection<edge_data> i = this.getE(src);
+		Iterator<edge_data> it =  i.iterator();
+		while(!(i.isEmpty()) && it.hasNext()  ) {        										// check if the edge is exist
+		if(it.next().getDest() == dest) throw new RuntimeException("this edge allready exist");
+		}
+		
+		MC++; 
 		edgesNum++;
 		EdgeData ED = new EdgeData(src, dest, w);
 		node_data m = vertex.get(src);
 		edge.get(m).put(dest, ED);
+	}
+		else { 
+			throw new RuntimeException("one of the nodes does not exist");
+		}
 	}
 
 	@Override
@@ -64,8 +77,9 @@ public class DGraph implements graph {
 
 	@Override
 	public node_data removeNode(int key) {
+		
 		MC++;
-		Collection<node_data> v = getV();
+		Collection<node_data> v = getV();				//check if the node is exist and remove it
 		Iterator<node_data> ite = v.iterator();
 		while (ite.hasNext()) {
 			node_data m = ite.next();

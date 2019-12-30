@@ -44,9 +44,9 @@ public class main {
 		temp.addNode(e);
 		
 		temp.connect(a.getKey(), b.getKey(), 1);
-		temp.connect(b.getKey(), c.getKey(), 2);
+		temp.connect(b.getKey(), c.getKey(), 3);
 		temp.connect(c.getKey(), d.getKey(), 3);
-		temp.connect(d.getKey(), e.getKey(), 2);
+		temp.connect(d.getKey(), e.getKey(), 1);
 		temp.connect(b.getKey(), d.getKey(), 1);
 		temp.connect(c.getKey(), e.getKey(), 2);
 		/*
