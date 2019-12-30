@@ -28,7 +28,7 @@ This class make num of functions ,1) add node to the graph by given key ,
 4)and can return collections of vertex and Edges , addtionlly we can remove an node by given key ,  and remove edge 
 by given  two diffrents keys (src,  dest ) 5) copy function.
 
-and graph_algo class implements graph_algorithims interface  who make usess on DGraph class, this class contain filed of specific graph .
+The graph_algo class implements graph_algorithims interface ,the most important class ,who make usess on DGraph class, this class contain filed of specific graph .
 The functions are implemnted :  isConnected  - return boolean variable if there is a path from each node to another .
 Init by given graph  , and capable to init an object instance graph_algo from file , and save to file a given graph , and copy who duplicate the Graph,
 In addition there are special functions : 1) shortestPathDist- who return the most short path from a given node to another node,
