@@ -185,33 +185,52 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
-		List<node_data> list = new ArrayList<node_data>();
 		Collection<node_data> node = this.m.getV();
 		int size = node.size();
 		Iterator<node_data> it = node.iterator();
 		while(it.hasNext()) {
 			if(this.m.getE(it.next().getKey()).size()!=size-1) return null;
 		}
-		double count=0;
-		double min=Double.MAX_VALUE;
-		Iterator<Integer> itersrc = targets.iterator();
-		edge_data edge = new EdgeData();
-		while(itersrc.hasNext()) {
-			Collection<edge_data> ed = this.m.getE(itersrc.next());
-			Iterator<edge_data> iteed = ed.iterator();
-			while(iteed.hasNext()) {
-				edge = iteed.next();
-				if(targets.contains(edge.getDest())) {
-				count+=edge.getWeight();
-			}
-				if(count<min) {
-					min = count;
+		List<node_data> list = new ArrayList<node_data>();
+		while(targets.size()>1) {
+			double min = Double.MAX_VALUE;
+			int j=0;
+			double sum=0;
+			int src=0;
+			int dest=0;
+			for (int i = 0; i < targets.size(); i++) {
+				for (int k = 0; k < targets.size(); k++) {
+					if(i!=k) {
+						int start = targets.get(i);
+						int end = targets.get(k);
+						sum = shortestPathDist(start,end);
+						isclear();
+						if(sum<min) {
+							min=sum;
+							src = start;
+							dest = end;
+						}
+					}
 				}
+			}
+			if(targets.contains(src) && targets.contains(dest)) {
+				List<node_data> lis = new ArrayList<node_data>();
+				lis=shortestPath(src,dest);
+				for (int i = lis.size()-1; i > 0; i--) {
+					list.add(lis.get(i));
+				}
+				targets.remove((Object) src);
+			}
 		}
-			count=0;
-		}
-
+		list.add(this.m.getNode(targets.get(0)));
 		return list;
+	}
+	private void isclear() {
+		Collection<node_data> node = this.m.getV();
+		Iterator<node_data> it = node.iterator();
+		while(it.hasNext()) {
+			it.next().setWeight(Double.MAX_VALUE);
+		}
 	}
 
 	@Override
