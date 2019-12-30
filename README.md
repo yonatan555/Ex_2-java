@@ -1,6 +1,6 @@
-# Ex_2-
+# Ex_2- java
 
-javaThis project is gonna implement graph who built by edges  , vertexes.
+This project is gonna implement graph who built by edges  , vertexes.
 The graph will capable to be drawn and execute on it functions by Graph_Algo class.
 
 
