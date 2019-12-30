@@ -1,12 +1,13 @@
 package dataStructure;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 
 import utils.Point3D;
 
-public class DGraph implements graph {
+public class DGraph implements graph,Serializable {
 
 	public Hashtable<Integer, node_data> vertex;
 	public Hashtable<node_data, Hashtable<Integer, edge_data>> edge;

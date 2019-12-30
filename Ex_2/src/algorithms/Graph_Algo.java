@@ -1,5 +1,6 @@
 package algorithms;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,16 +46,16 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 		Graph_Algo gr = null;
 
 		try {
-			FileInputStream file = new FileInputStream(file_name);
+			FileInputStream file = new FileInputStream(new File(file_name));
 			ObjectInputStream in = new ObjectInputStream(file);
 
 			gr = (Graph_Algo) in.readObject();
-
+			this.m = gr.m;
 			in.close();
 			file.close();
 
 			System.out.println("Object has been deserialized");
-			System.out.println(gr.m);
+		
 		} catch (IOException ex) {
 			System.out.println("IOException is caught");
 		} catch (ClassNotFoundException ex) {
@@ -63,10 +64,10 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 	}
 
 	@Override
-	public void save(String file_name) { // save to file
+	public void save(String file_name) { 							//save to file
 
 		try {
-			FileOutputStream file = new FileOutputStream(file_name);
+			FileOutputStream file = new FileOutputStream(new File(file_name));
 			ObjectOutputStream out = new ObjectOutputStream(file);
 
 			out.writeObject(this);

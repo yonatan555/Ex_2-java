@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		DGraph temp = new DGraph();
 
-		Point3D m = new Point3D(100, 352, 4);
+		Point3D m = new Point3D(100, 550, 4);
 		Point3D m1 = new Point3D(400, 210, 5);
 		Point3D m2 = new Point3D(120, 300, 6);
 		Point3D m3 = new Point3D(130,200, 7);
@@ -23,7 +23,6 @@ public class Main {
 		NodeData c = new NodeData(3, m2);
 		NodeData d = new NodeData(4, m3);
 		NodeData e = new NodeData(5, m4);
-		 //NodeData f = new NodeData(6,2.5,m5);
 
 		temp.addNode(a);
 		temp.addNode(b);
