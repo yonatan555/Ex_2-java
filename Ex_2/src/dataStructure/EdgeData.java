@@ -73,6 +73,7 @@ public class EdgeData implements edge_data,Serializable {
 		this.tag = t;
 	}
 	public edge_data copy() {
+		if(this == null) return null;
 		EdgeData i = new EdgeData(this.src, this.dest, this.weight, new String(this.metadata), this.tag);
 		return i ; 
 	}

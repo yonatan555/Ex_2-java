@@ -138,8 +138,13 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String op = e.getActionCommand();
+		
 		if (op.equals("Paint_Graph")) {
-			
+			Collection<node_data> m  = this.grp.getV();
+			Iterator<node_data> i  = m.iterator();
+			while(i.hasNext()) {
+				i.next().setTag(0);
+			}
 			repaint();
 		} else if (op.equals("Is Connected")) {
 			isConnected();

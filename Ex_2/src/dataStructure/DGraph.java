@@ -1,4 +1,4 @@
-			package dataStructure;
+package dataStructure;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -23,6 +23,7 @@ public class DGraph implements graph,Serializable {
 
 	@Override
 	public node_data getNode(int key) {
+		
 		MC++;
 		return vertex.get(key);
 	}
@@ -122,7 +123,7 @@ public class DGraph implements graph,Serializable {
 	public DGraph copy() {
 		
 		DGraph m = new DGraph();
-
+		m.MC = 0  ;
 		Collection<node_data> node = this.getV();
 		Iterator<node_data> it = node.iterator();
 		while (it.hasNext()) {

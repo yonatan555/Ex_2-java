@@ -47,18 +47,17 @@ public class NodeData implements node_data,Serializable {
 	@Override
 	public void setLocation(Point3D p) {
 		this.point = new Point3D(p);
-
 	}
 
 	@Override
 	public double getWeight() {
+
 		return this.weight;
 	}
 
 	@Override
 	public void setWeight(double w) {
 		this.weight = w;
-
 	}
 
 	@Override
@@ -74,16 +73,17 @@ public class NodeData implements node_data,Serializable {
 
 	@Override
 	public int getTag() {
-		return this.tag;
+			return this.tag ;	
 	}
 
 	@Override
 	public void setTag(int t) {
-		this.tag = t;
+		
+		this.tag = t ;
 
 	}
 	public node_data copy() {
-		
+		if(this == null) return null;
 		NodeData n = new NodeData();
 		
 		n.ID = this.ID;

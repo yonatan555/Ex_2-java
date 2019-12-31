@@ -49,17 +49,21 @@ public class main {
 		temp.connect(d.getKey(), e.getKey(), 1);
 		temp.connect(b.getKey(), d.getKey(), 1);
 		temp.connect(c.getKey(), e.getKey(), 2);
-		/*
-		 * temp.connect(c.getKey(), a.getKey(), 4); temp.connect(c.getKey(), b.getKey(),
-		 * 8); temp.connect(c.getKey(), d.getKey(), 3); temp.connect(d.getKey(),
-		 * a.getKey(), 1); temp.connect(d.getKey(), b.getKey(), 10);
-		 * temp.connect(d.getKey(), c.getKey(), 2);
-		 */
+		
 
+		//temp.removeNode(7);
 		
-		
+		//System.out.println(kd.ID);
 		h = temp.copy();
 		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		t.init(h);
 		System.out.println(t.shortestPathDist(1, 5));
 		
@@ -72,7 +76,7 @@ public class main {
 		List<node_data> lis = t.shortestPath(1, 5);
 		for (int i = 0; i < lis.size(); i++) {
 			System.out.print(lis.get(i).getKey()+",");
-		}
+		}*/
 		
 
 
