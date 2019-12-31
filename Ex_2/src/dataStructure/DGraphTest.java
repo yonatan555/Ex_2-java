@@ -94,7 +94,7 @@ class DGraphTest {
 		h.connect(d.getKey(), c.getKey(), 5);
 		
 		h.removeNode(g.getKey());
-		//h.removeNode(g.getKey());
+		
 		
 		h.removeEdge(a.getKey(), g.getKey());
 		h.removeEdge(d.getKey(), c.getKey());
