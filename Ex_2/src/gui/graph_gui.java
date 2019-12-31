@@ -23,17 +23,19 @@ import javax.swing.JOptionPane;
 
 import dataStructure.DGraph;
 import dataStructure.EdgeData;
+import dataStructure.NodeData;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.main;
 import dataStructure.node_data;
+import utils.Point3D;
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 
 public class graph_gui extends JFrame implements ActionListener, Serializable {
 
 	private static JFrame frame;
-	graph grp;
+	graph grp = null;
 
 	public graph_gui() {
 		initGUI();
@@ -83,6 +85,10 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 		item7.addActionListener(this);
 		menu.add(item7);
 
+		MenuItem item8 = new MenuItem("intialize a graph");
+		item8.addActionListener(this);
+		menu.add(item8);
+
 	}
 
 	public void paint(Graphics g) {
@@ -96,7 +102,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 				g.fillOval(no.getLocation().ix(), no.getLocation().iy(), 20, 20); // draw src point
 				g.setFont(new Font("TimesRoman", Font.PLAIN, 25)); // set the font of the oval
 				g.drawString("" + no.getKey(), no.getLocation().ix(), no.getLocation().iy() + 1); // draw the num of src
-																									// point
+				// point
 
 				for (edge_data ed : this.grp.getE(no.getKey())) {
 					dest = this.grp.getNode(ed.getDest());
@@ -104,32 +110,32 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
 						g.setColor(Color.black);
 						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-																											// point
+								// point
 								dest.getLocation().iy());
 					} else if (grp.getNode(ed.getDest()).getTag() == 300 && grp.getNode(ed.getSrc()).getTag() == 300) {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
 						g.setColor(Color.black);
 						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-																											// point
+								// point
 								dest.getLocation().iy());
 					} else {
 						g.setColor(Color.RED);
 						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-																											// point
+								// point
 								dest.getLocation().iy());
 					}
 					g.setColor(Color.black);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 18)); // set the font of the string
 					g.drawString("" + ed.getWeight(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, // draw
-																												// weight
-																												// of
-																												// edge
-																												// point
+							// weight
+							// of
+							// edge
+							// point
 							((no.getLocation().iy() + dest.getLocation().iy()) / 2) + 1);
 					g.setColor(Color.YELLOW);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); // set the font of the oval
 					g.fillOval(dest.getLocation().ix() - 5, dest.getLocation().iy() - 3, 10, 10); // draw enterance
-																									// point
+					// point
 				}
 			}
 		}
@@ -138,11 +144,21 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String op = e.getActionCommand();
-		
+
+		if (op.equals("intialize a graph")) {
+			intialize();
+			repaint();
+		}
+		if (this.grp == null) {
+			JFrame Shortest = new JFrame();
+			JOptionPane.showMessageDialog(Shortest, "the graph is not initilized \nTo Initialize click menu then :intialize a graph");
+			return;
+		}
+
 		if (op.equals("Paint_Graph")) {
-			Collection<node_data> m  = this.grp.getV();
-			Iterator<node_data> i  = m.iterator();
-			while(i.hasNext()) {
+			Collection<node_data> m = this.grp.getV();
+			Iterator<node_data> i = m.iterator();
+			while (i.hasNext()) {
 				i.next().setTag(0);
 			}
 			repaint();
@@ -265,6 +281,51 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(Shortest, "the char is not aviablle ");
 		}
+		repaint();
+	}
+
+	private void intialize() {
+		if (this.grp != null) {
+			JFrame Shortest = new JFrame();
+			JOptionPane.showMessageDialog(Shortest, "The graph is allready exist");
+			return;
+		}
+		graph grp = new DGraph();
+		this.grp = grp; 
+		
+		Point3D m = new Point3D(250, 550, 4);
+		Point3D m1 = new Point3D(800, 210, 5);
+		Point3D m2 = new Point3D(250, 300, 6);
+		Point3D m3 = new Point3D(560, 200, 7);
+		Point3D m4 = new Point3D(340, 80, 7);
+		Point3D m5 = new Point3D(260, 180, 7);
+
+		NodeData a = new NodeData(1, m);
+		NodeData b = new NodeData(2, m1);
+		NodeData c = new NodeData(3, m2);
+		NodeData d = new NodeData(4, m3);
+		NodeData e = new NodeData(5, m4);
+		NodeData f = new NodeData(6, m5);
+
+		this.grp.addNode(a);
+		this.grp.addNode(b);
+		this.grp.addNode(c);
+		this.grp.addNode(d);
+		this.grp.addNode(e);
+		this.grp.addNode(f);
+
+		this.grp.connect(a.getKey(), b.getKey(), 2);
+		this.grp.connect(c.getKey(), a.getKey(), 10);
+		this.grp.connect(b.getKey(), c.getKey(), 6);
+		this.grp.connect(c.getKey(), d.getKey(), 1);
+		this.grp.connect(f.getKey(), e.getKey(), 5);
+		this.grp.connect(e.getKey(), a.getKey(), 3);
+		this.grp.connect(e.getKey(), f.getKey(), 3);
+		this.grp.connect(b.getKey(), f.getKey(), 3);
+		this.grp.connect(c.getKey(), b.getKey(), 3);
+		this.grp.connect(f.getKey(), c.getKey(), 3);
+		this.grp.connect(d.getKey(), e.getKey(), 3);
+
 		repaint();
 	}
 }

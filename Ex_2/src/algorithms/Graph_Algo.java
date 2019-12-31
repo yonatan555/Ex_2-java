@@ -240,11 +240,17 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 
 		Collection<node_data> node = this.m.getV();
 		Iterator<node_data> it = node.iterator();
+		Iterator<node_data> it2 = node.iterator();
+		while (it2.hasNext()) {
+			NodeData n = new NodeData();
+			n = (NodeData) it2.next();
+			m.addNode(new NodeData(n.getKey(), n.metadata, n.getTag(),
+					new Point3D(n.point.x(), n.point.y(), n.point.z())));
+		}
+		
 		while (it.hasNext()) {
 			NodeData n = new NodeData();
 			n = (NodeData) it.next();
-			m.addNode(new NodeData(n.getKey(), n.metadata, n.getTag(),
-					new Point3D(n.point.x(), n.point.y(), n.point.z())));
 			Collection<edge_data> edge = this.m.getE(n.getKey());
 			Iterator<edge_data> ite = edge.iterator();
 			while (ite.hasNext()) {
