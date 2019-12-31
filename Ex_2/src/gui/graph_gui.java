@@ -139,6 +139,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	public void actionPerformed(ActionEvent e) {
 		String op = e.getActionCommand();
 		if (op.equals("Paint_Graph")) {
+			
 			repaint();
 		} else if (op.equals("Is Connected")) {
 			isConnected();
@@ -232,7 +233,6 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 			List<node_data> lis = m.shortestPath(ans, ans1);
 			for (int i = 0; i < lis.size(); i++) {
 				lis.get(i).setTag(200);
-
 			}
 			repaint();
 		} catch (Exception e) {
