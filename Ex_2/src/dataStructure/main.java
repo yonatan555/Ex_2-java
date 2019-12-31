@@ -51,7 +51,7 @@ public class main {
 		temp.connect(c.getKey(), e.getKey(), 2);
 		
 
-		//temp.removeNode(7);
+		temp.removeEdge(1, 2);
 		
 		//System.out.println(kd.ID);
 		h = temp.copy();

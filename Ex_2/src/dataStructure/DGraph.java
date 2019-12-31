@@ -12,7 +12,7 @@ public class DGraph implements graph,Serializable {
 	public Hashtable<Integer, node_data> vertex;
 	public Hashtable<node_data, Hashtable<Integer, edge_data>> edge;
 
-	static int MC = 0;
+	int MC = 0;
 	int edgesNum = 0;
 
 	public DGraph() {
@@ -36,7 +36,6 @@ public class DGraph implements graph,Serializable {
 
 	@Override
 	public void addNode(node_data n) {
-		if(vertex.contains(n.getKey())) throw new RuntimeException("this node allready exist");
 		MC++;
 		vertex.put(n.getKey(), n);
 		edge.put(n, new Hashtable<Integer, edge_data>());
@@ -121,7 +120,7 @@ public class DGraph implements graph,Serializable {
 	}
 
 	public DGraph copy() {
-		
+		if(this == null) return null;
 		DGraph m = new DGraph();
 		m.MC = 0  ;
 		Collection<node_data> node = this.getV();
