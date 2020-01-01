@@ -43,7 +43,7 @@ public class Main {
 		temp.connect(f.getKey(), c.getKey(), 3);
 		temp.connect(d.getKey(), e.getKey(), 3);
 		graph_gui window1 = new graph_gui();
-		graph_gui window = new graph_gui(temp);
+		//graph_gui window = new graph_gui(temp);
 		
 		window1.setVisible(true);
 	}

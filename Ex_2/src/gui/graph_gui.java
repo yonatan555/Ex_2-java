@@ -26,7 +26,6 @@ import dataStructure.EdgeData;
 import dataStructure.NodeData;
 import dataStructure.edge_data;
 import dataStructure.graph;
-import dataStructure.main;
 import dataStructure.node_data;
 import utils.Point3D;
 import algorithms.Graph_Algo;
@@ -109,33 +108,27 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 					if (grp.getNode(ed.getDest()).getTag() == 200 && grp.getNode(ed.getSrc()).getTag() == 200) {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
 						g.setColor(Color.black);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-								// point
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point	
 								dest.getLocation().iy());
 					} else if (grp.getNode(ed.getDest()).getTag() == 300 && grp.getNode(ed.getSrc()).getTag() == 300) {
 						g.setFont((new Font("TimesRoman", Font.PLAIN, 40)));
-						g.setColor(Color.black);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-								// point
+						g.setColor(Color.GRAY);
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point
 								dest.getLocation().iy());
 					} else {
 						g.setColor(Color.RED);
-						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge
-								// point
+						g.drawLine(no.getLocation().ix(), no.getLocation().iy(), dest.getLocation().ix(), // draw edge point
 								dest.getLocation().iy());
 					}
 					g.setColor(Color.black);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 18)); // set the font of the string
-					g.drawString("" + ed.getWeight(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, // draw
-							// weight
-							// of
-							// edge
-							// point
+					g.drawString("" + ed.getWeight(), (no.getLocation().ix() + dest.getLocation().ix()) / 2, // draw weight of edge point
+
 							((no.getLocation().iy() + dest.getLocation().iy()) / 2) + 1);
 					g.setColor(Color.YELLOW);
 					g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); // set the font of the oval
-					g.fillOval(dest.getLocation().ix() - 5, dest.getLocation().iy() - 3, 10, 10); // draw enterance
-					// point
+					g.fillOval(dest.getLocation().ix() - 5, dest.getLocation().iy() - 3, 10, 10); // draw enterance point
+
 				}
 			}
 		}
@@ -147,6 +140,11 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 
 		if (op.equals("intialize a graph")) {
 			intialize();
+			repaint();
+		} else if (op.equals("Save")) {
+			Save();
+		} else if (op.equals("Load")) {
+			Load();
 			repaint();
 		}
 		if (this.grp == null) {
@@ -165,12 +163,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 		} else if (op.equals("Is Connected")) {
 			isConnected();
 			repaint();
-		} else if (op.equals("Save")) {
-			Save();
-		} else if (op.equals("Load")) {
-			Load();
-			repaint();
-		} else if (op.equals("Shortest_Path_Dist")) {
+		}  else if (op.equals("Shortest_Path_Dist")) {
 			Shortest_Path_Dist();
 			repaint();
 		} else if (op.equals("Shortest_Path")) {
@@ -219,6 +212,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 				grp = temp.copy();
 				repaint();
 			}
+
 			frame.pack();
 		} catch (Exception e) {
 			System.out.println("the file dosnt exist / couldnt read the file");
@@ -265,8 +259,10 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	private void TSP() {
 		Graph_Algo m = new Graph_Algo();
 		m.init(this.grp);
+
 		JFrame Shortest = new JFrame();
-		String x = JOptionPane.showInputDialog(Shortest, "Enter points");
+		String x = JOptionPane.showInputDialog(Shortest, "Enter points / --with spaces ");
+
 		try {
 			List<Integer> targets = new ArrayList<Integer>();
 			String str[] = x.split(" ");
@@ -274,8 +270,13 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 				targets.add(Integer.parseInt(str[i]));
 			}
 			List<node_data> lis = m.TSP(targets);
-			for (int i = 0; i < lis.size(); i++) {
-				lis.get(i).setTag(300);
+			if(lis==null) {
+				JOptionPane.showMessageDialog(Shortest, "The graph is not connected");
+			}
+			else {
+				for (int i = 0; i < lis.size(); i++) {
+					lis.get(i).setTag(300);
+				}
 			}
 			repaint();
 		} catch (Exception e) {
@@ -292,7 +293,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 		}
 		graph grp = new DGraph();
 		this.grp = grp; 
-		
+
 		Point3D m = new Point3D(250, 550, 4);
 		Point3D m1 = new Point3D(800, 210, 5);
 		Point3D m2 = new Point3D(250, 300, 6);

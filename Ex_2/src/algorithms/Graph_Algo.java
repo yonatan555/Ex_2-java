@@ -185,12 +185,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
-		Collection<node_data> node = this.m.getV();
-		int size = node.size();
-		Iterator<node_data> it = node.iterator();
-		while(it.hasNext()) {
-			if(this.m.getE(it.next().getKey()).size()!=size-1) return null;
-		}
+		isclear();
 		List<node_data> list = new ArrayList<node_data>();
 		while(targets.size()>1) {
 			double min = Double.MAX_VALUE;
@@ -205,7 +200,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 						int end = targets.get(k);
 						sum = shortestPathDist(start,end);
 						isclear();
-						if(sum<min) {
+						if(sum <= min) {
 							min=sum;
 							src = start;
 							dest = end;
@@ -213,6 +208,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 					}
 				}
 			}
+			if(min==Double.MAX_VALUE) return null;
 			if(targets.contains(src) && targets.contains(dest)) {
 				List<node_data> lis = new ArrayList<node_data>();
 				lis=shortestPath(src,dest);

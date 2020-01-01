@@ -23,6 +23,7 @@ public class DGraph implements graph, Serializable {
 
 	@Override
 	public node_data getNode(int key) {
+		
 			MC++;
 			return vertex.get(key);
 	}
