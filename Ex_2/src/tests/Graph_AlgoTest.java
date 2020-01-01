@@ -138,7 +138,6 @@ class Graph_AlgoTest {
 		Point3D m1 = new Point3D(2, 4, 5);
 		Point3D m2 = new Point3D(3, 5, 6);
 		Point3D m3 = new Point3D(4, 6, 7);
-		//Point3D m4 = new Point3D(5, 6, 7);
 	
 		NodeData a = new NodeData(1, m);
 		NodeData b = new NodeData(2, m1);

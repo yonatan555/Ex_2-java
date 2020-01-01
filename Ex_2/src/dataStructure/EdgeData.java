@@ -18,7 +18,7 @@ public class EdgeData implements edge_data,Serializable {
 		this.dest=0;
 		this.weight=0;
 		this.tag = 0 ;
-		this.metadata = new String("need to implemnt");
+		this.metadata = "need to implemnt";
 		
 	}
 	public EdgeData(int src, int dest, double weight) {
@@ -26,7 +26,7 @@ public class EdgeData implements edge_data,Serializable {
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
-		this.metadata =  new String("need to implemnt");
+		this.metadata =  "need to implemnt";
 	
 	}
 

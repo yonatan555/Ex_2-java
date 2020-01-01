@@ -23,15 +23,14 @@ public class DGraph implements graph, Serializable {
 
 	@Override
 	public node_data getNode(int key) {
-		
-			MC++;
-			return vertex.get(key);
+		MC++;
+		return vertex.get(key);
 	}
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
-			MC++;
-			return edge.get(getNode(src)).get(dest);
+		MC++;
+		return edge.get(getNode(src)).get(dest);
 	}
 
 	@Override
@@ -45,20 +44,17 @@ public class DGraph implements graph, Serializable {
 
 	@Override
 	public void connect(int src, int dest, double w) {
-		if (w < 0)
-			throw new RuntimeException("The weight cant be Negative");
-		if (src == dest)
+		if (w < 0 || src == dest || this.getEdge(src, dest) != null)  
+			throw new RuntimeException("The weight cant be Negative or somthing else");
+		/*if (src == dest)
 			throw new RuntimeException("This is the same node"); // if it is the same node
 		if (this.getEdge(src, dest) != null) {
 			throw new RuntimeException("this edge allready exist");
-			}
-			MC++;
-			edgesNum++;
-			EdgeData ED = new EdgeData(src, dest, w);
-			node_data m = vertex.get(src);
-			edge.get(m).put(dest, ED);
 		}
-	
+		*/MC++;
+		edgesNum++;
+		edge.get(vertex.get(src)).put(dest, new EdgeData(src, dest, w));
+	}
 
 	@Override
 	public Collection<node_data> getV() {
@@ -75,30 +71,32 @@ public class DGraph implements graph, Serializable {
 
 	@Override
 	public node_data removeNode(int key) {
-		if(this.getNode(key) != null) {
-		MC++;
-		Collection<node_data> v = getV(); // check if the node is exist and remove it
-		Iterator<node_data> ite = v.iterator();
-		while (ite.hasNext()) {
-			node_data m = ite.next();
-			if (edge.get(m).containsKey(key)) {
-				edge.get(m).remove(key);
-				edgesNum--;
+		if (this.getNode(key) != null) {
+			MC++;
+			Collection<node_data> v = getV(); // check if the node is exist and remove it
+			Iterator<node_data> ite = v.iterator();
+			while (ite.hasNext()) {
+				node_data m = ite.next();
+				if (edge.get(m).containsKey(key)) {
+					edge.get(m).remove(key);
+					edgesNum--;
+				}
 			}
-		}
-		int counter = edge.get(getNode(key)).size();
-		edge.remove(getNode(key));
-		edgesNum -= counter;
-		return vertex.remove(key);
+			int counter = edge.get(getNode(key)).size();
+			edge.remove(getNode(key));
+			edgesNum -= counter;
+			return vertex.remove(key);
 		}
 		throw new RuntimeException("The node is not exist");
 	}
+
 	@Override
 	public edge_data removeEdge(int src, int dest) {
 		MC++;
 		edgesNum--;
 		return edge.get(getNode(src)).remove(dest);
 	}
+
 	@Override
 	public int nodeSize() {
 		MC++;
@@ -117,8 +115,9 @@ public class DGraph implements graph, Serializable {
 	}
 
 	public DGraph copy() {
-		if (this == null) return null;
-			
+		if (this == null)
+			return null;
+
 		DGraph m = new DGraph();
 		m.MC = 0;
 
