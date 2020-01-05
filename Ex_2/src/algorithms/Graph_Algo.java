@@ -36,8 +36,13 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 	public graph m;
 	
 
+	
 	public Graph_Algo(graph _graph) {
 		this.m = _graph;
+	}
+
+	public Graph_Algo() {
+		this.m =null; 
 	}
 
 	@Override
