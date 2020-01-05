@@ -222,6 +222,7 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	private void Shortest_Path_Dist() {
 		Graph_Algo m = new Graph_Algo();
 		m.init(this.grp);
+		
 		JFrame Shortest = new JFrame();
 
 		String x = JOptionPane.showInputDialog(Shortest, "Enter start point");

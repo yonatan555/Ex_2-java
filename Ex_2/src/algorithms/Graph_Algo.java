@@ -34,6 +34,11 @@ import utils.Point3D;
 public class Graph_Algo implements graph_algorithms, Serializable {
 
 	public graph m;
+	
+
+	public Graph_Algo(graph _graph) {
+		this.m = _graph;
+	}
 
 	@Override
 	public void init(graph g) {
@@ -83,6 +88,7 @@ public class Graph_Algo implements graph_algorithms, Serializable {
 
 	@Override
 	public boolean isConnected() {
+		if(this.m.getV().size() == 0 ) return true;
 		boolean flag = false;
 		boolean flag1 = false;
 		Collection<node_data> node = this.m.getV();
