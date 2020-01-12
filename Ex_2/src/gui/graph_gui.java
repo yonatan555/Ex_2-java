@@ -41,11 +41,8 @@ public class graph_gui extends JFrame implements ActionListener, Serializable {
 	}
 
 	public graph_gui(graph g) {
-		
 		this.grp = g;
 		initGUI();
-	
-	
 	}
 
 	private void initGUI() {
